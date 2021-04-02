@@ -7,8 +7,8 @@ module MUX2to1(a, b, s, f);
     always @(s)
         begin
             case(s)
-                1'b0: f = a;
-                1'b1: f = b;
+                1'b0: f = a; //Bit 0 choose A
+                1'b1: f = b; //Bit 1 choose B
             endcase
         end
 endmodule
