@@ -1,0 +1,47 @@
+$date
+   Wed Mar 31 16:23:56 2021
+$end
+$version
+  2020.2
+$end
+$timescale
+  1ps
+$end
+$scope module test $end
+$var reg 4 ! a [3:0] $end
+$var reg 4 " b [3:0] $end
+$var reg 1 # carry_in $end
+$var wire 4 $ sum [3:0] $end
+$var wire 1 % carry_out $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+bx !
+bx "
+x#
+bx $
+x%
+$end
+#5000
+b0 !
+b0 "
+0#
+bx000 $
+0%
+#10000
+b10 !
+b11 "
+bx011 $
+#15000
+1#
+bx010 $
+#20000
+b1000 !
+b111 "
+0#
+bx101 $
+x%
+#25000
+1#
+bx100 $
