@@ -30,7 +30,7 @@ module Instruction_Mem_Fetch(
     );
     
     // Declaration of 64 word memory array
-    reg[7:0] instruction_mem[0:63];
+    reg[7:0] instruction_mem[15:0];
     
     // load first 6 instructions for testing
     initial
