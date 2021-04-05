@@ -22,23 +22,36 @@
 
 module Program_Counter(
     input clock,
-    input[7:0] change_address,
-    output reg[7:0] new_address
+    input[7:0] change_address, // incomming address value
+    output reg[7:0] new_address // outgoing address value, only changes after delay loop
     );
     
-    reg[7:0] position = 8'b0;
+    integer delay = 1; // counter to prevent over running instruction execution process
+    reg[7:0] position = 8'b0; // 
     
     always @(posedge clock)
     begin
-        if(change_address)
-            begin
-            position <= change_address;
+        if(delay == 0) begin // change address
+            if(change_address == position) begin /* no jump address provided */
+                position <= change_address + 1;
+                new_address <= position;
             end
-        else
-            begin
-            position <= position + 1;
+            else begin /* jump to address */
+                position <= change_address;
+                new_address <= position;
             end
-        
-        new_address <= position;        
+            
+            delay = delay + 1; // increment counter
+        end
+        else begin // no address change
+            if(delay < 6) begin
+                delay = delay + 1; // increment counter
+                new_address <= position; // address no change
+            end
+            else begin
+                delay = 0; // reset counter
+                new_address <= position; // address no change
+            end
+        end
     end
 endmodule
