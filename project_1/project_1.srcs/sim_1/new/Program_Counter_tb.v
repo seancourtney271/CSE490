@@ -1,50 +1,36 @@
 `timescale 1ns / 1ps
 module Program_Counter_tb;
 reg clock;
+reg jump;
 reg [7:0] change_address; // incomming address value
 wire [7:0] new_address; // outgoing address value, only changes after delay loop
-Program_Counter pc (clock, change_address, new_address);
+Program_Counter pc (.clock(clock), .jump_signal(jump), .change_address(change_address), .new_address(new_address));
+integer i;
 initial begin
-    #10
-    clock = 1;//0
-    change_address = 8'b00000000;
-    #10
+    
+    
+    jump = 0;
+    change_address = 1;
+    for(i = 0; i < 12 ; i = i + 1)begin
+        clock = 1;//0
+        #10;
+        clock = 0;
+        #10;
+    end
+    
+    jump = 1;
+    clock = 1;
+    #10;
     clock = 0;
-    #10
-    clock = 1;//1
-    change_address = 8'b00000001;
-    #10
-    clock = 0;
-    #10
-    clock = 1;//2
-    change_address = 8'b00000010;
-    #10
-    clock = 0;
-    #10
-    clock = 1;//3
-    change_address = 8'b00000011;
-    #10
-    clock = 0;
-    #10
-    clock = 1;//4
-    change_address = 8'b00000100;
-    #10
-    clock = 0;
-    #10
-    clock = 1;//5
-    change_address = 8'b00000101;
-    #10
-    clock = 0;
-    #10
-    clock = 1;//6
-    change_address = 8'b00000110;
-    #10
-    clock = 0;
-    #10
-    clock = 1;//7
-    change_address = 8'b00000111;
-    #10
-    clock = 0;
-    #10 $finish;
+    #10;
+    jump = 0;
+    for(i = 0; i < 11 ; i = i + 1)begin
+        clock = 1;//0
+        #10;
+        clock = 0;
+        #10;
+    end
+  
+    $finish;
 end
 endmodule
