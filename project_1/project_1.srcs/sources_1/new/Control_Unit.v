@@ -23,7 +23,7 @@
 module control_unit(input [2:0] opcode,
                     input reset,
                     output reg [1:0] reg_dst, mem_to_reg, alu_op,
-                    output reg jump,mem_read,mem_write,alu_src,reg_write,sign_extended);
+                    output reg jump,mem_read,mem_write,alu_src,reg_write);
     parameter [2:0] lw = 3'b000, sw = 3'b001, jmp = 3'b010, add = 3'b011, addi = 3'b100, sub = 3'b101; //create all possible parameters
     always @(opcode)
     begin
@@ -93,6 +93,17 @@ module control_unit(input [2:0] opcode,
             mem_write = 1'b0;
             alu_src = 1'b0;
             reg_write = 1'b1;
+        end
+        default:
+        begin
+            reg_dst = 2'b00;  
+            mem_to_reg = 2'b00;
+            alu_op = 2'b00; 
+            jump = 1'b0;
+            mem_read = 1'b0;
+            mem_write = 1'b0;
+            alu_src = 1'b0;
+            reg_write = 1'b0;
         end        
         endcase
     end
