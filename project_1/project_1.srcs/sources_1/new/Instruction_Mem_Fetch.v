@@ -24,7 +24,6 @@
     Works in conjunction with the Program Counter.
 */
 module Instruction_Mem_Fetch(
-    input clock,
     input[7:0] address,
     output reg[7:0] data
     );
@@ -43,7 +42,7 @@ module Instruction_Mem_Fetch(
     instruction_mem[5] <= 8'b10111000; // sub $t1,$t1,$t
     end
     
-    always @(posedge clock) // when address received
+    always @(address) // when address received
     begin
     data <= instruction_mem[address]; // output data to data 
     end

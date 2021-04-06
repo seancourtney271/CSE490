@@ -23,11 +23,10 @@
     Takes a 5bit input and sign extends to 8 bits
 */
 module Sign_Extend_Unit(
-    input clock,
     input [4:0] j_addr,
     output reg[7:0] full_addr
     );
-    always @(posedge clock)
+    always @(j_addr)
     begin
         full_addr <= $signed(j_addr);
     end
