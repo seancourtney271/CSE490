@@ -21,6 +21,14 @@ parameter [2:0] lw = 3'b000, sw = 3'b001, jmp = 3'b010, add = 3'b011, addi = 3'b
         begin
             result = op1 - op2;
         end
+        lw:
+        begin
+            result = op1 + op2;
+        end
+        sw:
+        begin
+            result = op1 + op2;
+        end        
         default:
         begin
             result = 8'b0;
