@@ -4,11 +4,23 @@ module Register_File(
     input clock, read_reg2, read_reg1, write_reg, control,
     input [7:0] write_data,
     output reg [7:0] t0_data, t1_data);
-    
+
     reg [7:0] t0, t1;
     
     always @ (posedge clock)
     begin
+        if(read_reg1 & read_reg2) //11
+        begin
+        end
+        else if(!read_reg1 & !read_reg2)//00
+        begin
+        end
+        else if(read_reg1 & !read_reg2)//10
+        begin
+        end
+        else if(!read_reg1 & read_reg2)//01
+        begin
+        end
         t0_data <= t0;
         t1_data <= t1;
         if(control)
