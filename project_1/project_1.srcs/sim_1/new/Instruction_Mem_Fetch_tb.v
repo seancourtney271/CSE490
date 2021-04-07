@@ -25,7 +25,7 @@ reg clock;
 reg [7:0] address;
 wire [7:0] data;
 
-Instruction_Mem_Fetch fetcher(clock, address, data);
+Instruction_Mem_Fetch fetcher(address, data);
 initial begin
     #10
     clock = 1;//0

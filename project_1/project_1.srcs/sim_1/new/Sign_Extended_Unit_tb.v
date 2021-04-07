@@ -4,7 +4,7 @@ module Sign_Extended_Unit_tb;
 reg clock;
 reg [4:0] j_addr;
 wire [7:0] full_addr;
-Sign_Extend_Unit seu(clock, j_addr, full_addr);
+Sign_Extend_Unit seu(j_addr, full_addr);
 initial begin
     #10
     clock = 1;//0
