@@ -25,7 +25,7 @@ module Instruction_Decode(
     output reg [2:0]control,
     output reg read_reg_1,
     output reg read_reg_2,
-    output reg [2:0]mux_write_reg,
+    output reg write_reg,
     output reg [4:0]sign_extended
     );
     //Break up instruction
@@ -36,7 +36,7 @@ module Instruction_Decode(
                 control = opcode; //set all necesarry bits for future modules.
                 read_reg_1 = instruction[4];
                 read_reg_2 = instruction[3];
-                mux_write_reg = instruction[2:0];
+                write_reg = instruction[4];
                 sign_extended = instruction[4:0];
         end
 endmodule
