@@ -24,19 +24,29 @@ module Processor(
     input clock
     );
     
-    wire Jump_Sig;
+    wire Jump_Sig, ID_out_reg1_bit, ID_out_reg2_bit, ID_out_write_reg;
     wire [7:0] Jump_Addr;
     wire [7:0] PC_out;
     wire [7:0] Fetched_Instruction;
+    wire [2:0] to_Ctrl_Op_bits;
+    wire [4:0] ID_out_j_type_bits;
+    wire [2:0] Ctrl_op_to_ALU;
+    
     
     
     
     Register_File Registers();
-    Control_Unit();
+    
+    Control_Unit(to_Ctrl_Op_bits, Ctrl_op_to_ALU,);
+    
     Program_Counter PC(clock, Jump_Sig, Jump_Addr, PC_out);
+    
     Instruction_Mem_Fetch IF(PC_out, Fetched_Instruction);
-    Instruction_Decode ID();
+    
+    Instruction_Decode ID(Fetched_Instruction, ID_out_reg1_bit, ID_out_reg2_bit, ID_out_write_reg, ID_out_j_type_bits);
+    
     ALU EX();
+    
     Data_Mem Mem();
     
     
