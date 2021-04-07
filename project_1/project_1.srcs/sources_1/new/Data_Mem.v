@@ -12,10 +12,10 @@ module Data_Mem(
     begin
     // write
         if(read_write) begin
-            stack[address] <= write_data;
+            stack[address] = write_data;
         end
         else begin
-            read_data <= stack[address];
+            read_data = stack[address];
         end
     end
 endmodule

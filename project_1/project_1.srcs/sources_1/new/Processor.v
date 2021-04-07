@@ -34,6 +34,8 @@ module Processor(
     wire Ctrl_jump, Ctrl_Mem_Read, Ctrl_Alu_Src, Ctrl_Reg_Write;
     wire [2:0] ALU_op;
     wire [7:0] Immediate;
+    wire [7:0] read_address, write_data, read_data;
+    wire data_read_write_signal;
     
     
     
@@ -50,7 +52,7 @@ module Processor(
     
     ALU EX(ALU_op, );
     
-    Data_Mem Mem();
+    Data_Mem Mem(clock, data_read_write_signal, read_address, write_data/*to mem*/, read_data/*from mem*/);
         
     Sign_Extend_Unit immediate_sign_extend(ID_out_Imm_bits, Immediate);
     
