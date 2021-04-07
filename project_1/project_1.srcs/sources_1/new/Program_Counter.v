@@ -37,24 +37,24 @@ module Program_Counter(
         
         
             if(delay == 0) begin // change address
-                position <= position + 1;
+                position = position + 1;
                 new_address <= position;                
                 delay = delay + 1; // increment counter
             end
             else begin // no address change
                 if(delay < 3) begin
                     delay = delay + 1; // increment counter
-                    new_address <= position; // address no change
+                    new_address = position; // address no change
                 end
                 else begin
                     delay = 0; // reset counter
-                    new_address <= position; // address no change
+                    new_address = position; // address no change
                 end
             end
         end
         else begin
-            position <= change_address;
-            new_address <= position;
+            position = change_address;
+            new_address = position;
             delay = 1; // reset counter
         end
     end

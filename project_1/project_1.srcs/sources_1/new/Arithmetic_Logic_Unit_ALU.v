@@ -3,7 +3,7 @@
 //ALU
 module ALU(opcode, op1, op2, result);
 input [2:0] opcode;
-input [7:0] op1, op2;
+input [7:0] op1, op2; // op1 is address for LW and SW
 output reg [7:0] result = 8'b0;
 parameter [2:0] lw = 3'b000, sw = 3'b001, jmp = 3'b010, add = 3'b011, addi = 3'b100, sub = 3'b101;
     always @(opcode or op1 or op2) //update result on any of these changing
@@ -23,11 +23,11 @@ parameter [2:0] lw = 3'b000, sw = 3'b001, jmp = 3'b010, add = 3'b011, addi = 3'b
         end
         lw:
         begin
-            result = op1 + op2;
+            result = op1;
         end
         sw:
         begin
-            result = op1 + op2;
+            result = op1;
         end        
         default:
         begin

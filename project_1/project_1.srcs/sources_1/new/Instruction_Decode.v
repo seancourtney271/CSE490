@@ -26,7 +26,8 @@ module Instruction_Decode(
     output reg read_reg_1,
     output reg read_reg_2,
     output reg write_reg,
-    output reg [4:0]sign_extended
+    output reg [2:0] imm_bits,
+    output reg [7:0]jump_bits
     );
     //Break up instruction
     wire [2:0]opcode = instruction[7:5]; //grab opcode from unstruction
@@ -37,6 +38,7 @@ module Instruction_Decode(
                 read_reg_1 = instruction[4];
                 read_reg_2 = instruction[3];
                 write_reg = instruction[4];
-                sign_extended = instruction[4:0];
+                imm_bits = instruction[2:0];
+                jump_bits = $signed(instruction[4:0]); // 5-bit to 8-bit jump address out
         end
 endmodule

@@ -3,11 +3,11 @@
     Takes a 5bit input and sign extends to 8 bits
 */
 module Sign_Extend_Unit(
-    input [4:0] j_addr,
-    output reg[7:0] full_addr
+    input [2:0] immediate,
+    output reg[7:0] full_Imm
     );
-    always @(j_addr)
+    always @(immediate)
     begin
-        full_addr <= $signed(j_addr);
+        full_Imm = $signed(immediate);
     end
 endmodule
