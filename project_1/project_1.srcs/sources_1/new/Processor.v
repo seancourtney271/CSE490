@@ -23,8 +23,33 @@
 module Processor(
     input clock
     );
-    always @ (clock)
-    begin
+    
+    wire Jump_Sig;
+    wire [7:0] Jump_Addr;
+    wire [7:0] PC_out;
+    wire [7:0] Fetched_Instruction;
+    
+    
+    
+    Register_File Registers();
+    Control_Unit();
+    Program_Counter PC(clock, Jump_Sig, Jump_Addr, PC_out);
+    Instruction_Mem_Fetch IF(PC_out, Fetched_Instruction);
+    Instruction_Decode ID();
+    ALU EX();
+    Data_Mem Mem();
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    always @ (posedge clock)
+    begin     
         
     end
 endmodule
