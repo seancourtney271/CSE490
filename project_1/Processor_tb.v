@@ -81,13 +81,6 @@ module Processor_tb;
             clock = 0;
             #t;
         end
-        
-//        for(i = 0; i < 50 ; i = i + 1)begin
-//            clock = 1;//0
-//            #t;
-//            clock = 0;
-//            #t;
-//        end
     
     
     $finish;
