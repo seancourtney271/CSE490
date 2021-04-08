@@ -3,9 +3,9 @@
 // Company: 
 // Engineer: 
 // 
-// Create Date: 04/05/2021 11:09:43 AM
+// Create Date: 04/07/2021 10:03:33 PM
 // Design Name: 
-// Module Name: Processor
+// Module Name: Processor_tb
 // Project Name: 
 // Target Devices: 
 // Tool Versions: 
@@ -20,10 +20,10 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module Processor(
-    input clock
-    );
-    
+module Processor_tb;
+    reg clock;
+    integer i, t = 2;
+
     wire Jump_Sig,
          ID_out_reg1_bit,
          ID_out_reg2_bit,
@@ -72,19 +72,24 @@ module Processor(
     MUX2to1 ALU_Input_MUX( t1_data, Immediate, input_MUX_signal, input_MUX_to_ALU);
     
     MUX2to1 ALU_Output_MUX( read_data, alu_result, output_MUX_signal, writeback);
+    initial begin
     
     
-
-    
-    
-    
-    
-
-    
-    
-    always @ (posedge clock)
-    begin
+        for(i = 0; i < 50 ; i = i + 1)begin
+            clock = 1;
+            #t;
+            clock = 0;
+            #t;
+        end
         
-        
+//        for(i = 0; i < 50 ; i = i + 1)begin
+//            clock = 1;//0
+//            #t;
+//            clock = 0;
+//            #t;
+//        end
+    
+    
+    $finish;
     end
 endmodule

@@ -25,7 +25,6 @@ module Instruction_Decode(
     output reg [2:0]control,
     output reg read_reg_1,
     output reg read_reg_2,
-    output reg write_reg,
     output reg [2:0] imm_bits,
     output reg [7:0]jump_bits
     );
@@ -37,7 +36,6 @@ module Instruction_Decode(
                 control = opcode; //set all necesarry bits for future modules.
                 read_reg_1 = instruction[4];
                 read_reg_2 = instruction[3];
-                write_reg = instruction[4];
                 imm_bits = instruction[2:0];
                 jump_bits = $signed(instruction[4:0]); // 5-bit to 8-bit jump address out
         end

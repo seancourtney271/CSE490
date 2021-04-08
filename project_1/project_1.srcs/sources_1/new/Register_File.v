@@ -1,7 +1,7 @@
 `timescale 1ns / 1ps
 
 module Register_File(
-    input clock, read_reg1, read_reg2, write_reg, control,
+    input clock, read_reg1, read_reg2, write_reg,
     input [7:0] write_data,
     output reg [7:0] t0_data, t1_data);
 
@@ -30,9 +30,9 @@ module Register_File(
             t1_data <= t1;
         end
         
-        if(control)
+        if(write_reg)
         begin
-            if(write_reg)//Write to Reg2
+            if(read_reg1)//Write to Reg2
             begin
                 t1 <= write_data;
             end
