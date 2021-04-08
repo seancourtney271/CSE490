@@ -22,12 +22,12 @@
 
 module Processor_tb;
     reg clock;
-    integer i, t = 2;
+    integer i, t = 10;
+    reg j = 0; // for test/debug
 
     wire Jump_Sig,
          ID_out_reg1_bit,
          ID_out_reg2_bit,
-         Ctrl_jump,
          Ctrl_Mem_Read,
          Ctrl_Alu_Src,
          Ctrl_Reg_Write,
@@ -38,15 +38,16 @@ module Processor_tb;
          
     wire [2:0] Op_code,
                ID_out_Imm_bits, // immediate value from instruction
-               Ctrl_op_to_ALU,
-               ALU_op;
+               Ctrl_op_to_ALU;
     
     
     wire [7:0] Jump_Addr, // sign extended jump address
                PC_out,
                Fetched_Instruction,
                Immediate,
-               read_address, write_data, read_data,
+               read_address,
+               write_data,
+               read_data,
                writeback,
                t0_data,
                t1_data,
@@ -55,9 +56,9 @@ module Processor_tb;
     
     Register_File Registers(clock, ID_out_reg1_bit, ID_out_reg2_bit, Ctrl_Reg_Write, writeback, t0_data, t1_data);
     
-    Control_Unit Control(Op_code, Ctrl_op_to_ALU, Ctrl_jump, Ctrl_Mem_Read, Ctrl_Alu_Src, Ctrl_Reg_Write);
+    Control_Unit Control(Op_code, Ctrl_op_to_ALU, Jump_Sig, Ctrl_Mem_Read, Ctrl_Alu_Src, Ctrl_Reg_Write);
     
-    Program_Counter PC(clock, Jump_Sig, Jump_Addr, PC_out);
+    Program_Counter PC(.clock(clock), .jump_signal(Jump_Sig), .change_address(Jump_Addr), .new_address(PC_out));
     
     Instruction_Mem_Fetch IF(PC_out, Fetched_Instruction);
     
@@ -72,10 +73,11 @@ module Processor_tb;
     MUX2to1 ALU_Input_MUX( t1_data, Immediate, input_MUX_signal, input_MUX_to_ALU);
     
     MUX2to1 ALU_Output_MUX( read_data, alu_result, output_MUX_signal, writeback);
+    
     initial begin
     
-    
-        for(i = 0; i < 50 ; i = i + 1)begin
+        #t;
+        for(i = 0; i < 100 ; i = i + 1)begin
             clock = 1;
             #t;
             clock = 0;

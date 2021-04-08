@@ -5,6 +5,11 @@ module Control_Unit(input [2:0] opcode,
 //                    output reg reg_dst, mem_to_reg,
                     output reg jump,mem_read,mem_write,alu_src,reg_write);
     parameter [2:0] lw = 3'b000, sw = 3'b001, jmp = 3'b010, add = 3'b011, addi = 3'b100, sub = 3'b101; //create all possible parameters
+    
+    initial begin
+        jump = 0;
+    end
+    
     always @(opcode)
     
     begin
