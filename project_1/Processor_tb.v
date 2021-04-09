@@ -23,7 +23,6 @@
 module Processor_tb;
     reg clock;
     integer i, t = 10;
-    reg j = 0; // for test/debug
 
     wire Jump_Sig,
          ID_out_reg1_bit,
@@ -54,7 +53,7 @@ module Processor_tb;
     
     Control_Unit Control(Op_code, Ctrl_op_to_ALU, Jump_Sig, Mem_write_signal, ALU_MUX_signal, writeback_MUX_signal, Reg_write_signal);
     
-    Program_Counter PC(.clock(clock), .jump_signal(Jump_Sig), .change_address(Jump_Addr), .new_address(PC_out));
+    Program_Counter PC(clock, Jump_Sig, Jump_Addr, PC_out);
     
     Instruction_Mem_Fetch IF(PC_out, Fetched_Instruction);
     
@@ -70,17 +69,20 @@ module Processor_tb;
     
     MUX2to1 Writeback_MUX(read_data, alu_result, writeback_MUX_signal, writeback);
     
-    initial begin
     
+    
+        
+    initial begin
         #t;
-        for(i = 0; i < 60 ; i = i + 1)begin
+        for(i = 0; i < 50 ; i = i + 1)begin
             clock = 1;
             #t;
             clock = 0;
             #t;
-        end
-    
-    
+        end 
     $finish;
     end
+    
+//    always
+//    #50 clock = ~clock;
 endmodule

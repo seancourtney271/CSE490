@@ -12,4 +12,4 @@ module MUX2to1(a, b, signal, f);
                 1'b1: f = b; //Bit 1 choose B
             endcase
         end
-endmodule
+endmodule 

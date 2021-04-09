@@ -42,7 +42,7 @@ module Program_Counter(
                 delay = delay + 1; // increment counter
             end
             else begin // no address change
-                if(delay < 5) begin
+                if(delay < 4) begin
                     delay = delay + 1; // increment counter
                     new_address = position; // address no change
                 end
@@ -58,4 +58,4 @@ module Program_Counter(
             delay = 1; // reset counter
         end
     end
-endmodule
+endmodule 

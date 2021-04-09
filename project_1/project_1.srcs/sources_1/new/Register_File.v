@@ -9,7 +9,7 @@ module Register_File(
     initial begin
         t0 = 8'b0;
         t1 = 8'b0;
-    end
+    end 
     
     always @ (*)
     begin

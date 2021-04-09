@@ -2,7 +2,6 @@
 
 module Control_Unit(input [2:0] opcode,
                     output reg [2:0] alu_op,
-//                    output reg reg_dst, mem_to_reg,
                     output reg jump,mem_write,alu_sig, writeback_sig,reg_write);
     parameter [2:0] lw = 3'b000, sw = 3'b001, jmp = 3'b010, add = 3'b011, addi = 3'b100, sub = 3'b101; //create all possible parameters
     

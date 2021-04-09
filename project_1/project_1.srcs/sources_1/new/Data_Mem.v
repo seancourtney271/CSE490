@@ -5,8 +5,15 @@ module Data_Mem(
     input [7:0] address, write_data,
     output reg[7:0] read_data
     );
-
-    reg[7:0] stack [63:0];
+    integer i;
+    reg[7:0] stack [31:0];
+    
+    initial begin
+        stack[0] = 8'b1;
+//        for(i = 0; i < 31; i = i + 1)begin
+//        stack[i] = 8'b0;
+//        end
+    end
     
     always @(posedge clock)
     begin
