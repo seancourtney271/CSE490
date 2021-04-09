@@ -6,39 +6,42 @@ module Register_File(
     output reg [7:0] t0_data, t1_data);
 
     reg [7:0] t0, t1; // registers
+    initial begin
+        t0 = 8'b0;
+        t1 = 8'b0;
+    end
     
-    always @ (posedge clock)
+    always @ (*)
     begin
-        if(read_reg1 & read_reg2) //11
+//        t0_data = 8'b10101010;
+//        t1_data = 8'b01010101;
+        if(read_reg1)
         begin
-            t0_data <= t1;
-            t1_data <= t1;
+            t0_data = t1;
         end
-        else if(!read_reg1 & !read_reg2)//00
+        else
         begin
-            t0_data <= t0;
-            t1_data <= t0;
+            t0_data = t0;
         end
-        else if(read_reg1 & !read_reg2)//10
+        
+        if(read_reg2)
         begin
-            t0_data <= t1;
-            t1_data <= t0;
+            t1_data = t1;
         end
-        else if(!read_reg1 & read_reg2)//01
+        else
         begin
-            t0_data <= t0;
-            t1_data <= t1;
+            t1_data = t0;
         end
         
         if(write_reg)
         begin
             if(read_reg1)//Write to Reg2
             begin
-                t1 <= write_data;
+                t1 = write_data;
             end
             else//Write to Reg1
             begin
-                t0 <= write_data;
+                t0 = write_data;
             end
         end
         else 
