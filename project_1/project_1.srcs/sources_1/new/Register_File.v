@@ -7,11 +7,11 @@ module Register_File(
 
     reg [7:0] t0, t1; // registers
     initial begin
-        t0 = 8'b0;
-        t1 = 8'b0;
+        t0 = 8'b00;
+        t1 = 8'b00;
     end 
     
-    always @ (*)
+    always @ (clock)
     begin
 //        t0_data = 8'b10101010;
 //        t1_data = 8'b01010101;

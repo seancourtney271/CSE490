@@ -9,10 +9,10 @@ module Data_Mem(
     reg[7:0] stack [31:0];
     
     initial begin
-        stack[0] = 8'b1;
-//        for(i = 0; i < 31; i = i + 1)begin
-//        stack[i] = 8'b0;
-//        end
+//        stack[0] = 8'b1;
+        for(i = 0; i < 31; i = i + 1)begin
+        stack[i] = 8'b0;
+        end
     end
     
     always @(posedge clock)

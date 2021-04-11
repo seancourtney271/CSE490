@@ -34,20 +34,30 @@ module Instruction_Mem_Fetch(
     // load first 6 instructions for testing
     initial
     begin
-//    instruction_mem[0] = 8'b10000010; // addi $t0, $t0, 2
-//    instruction_mem[1] = 8'b10011010; // addi $t1, $t1, 2
-//    instruction_mem[2] = 8'b01100000; // add $t0, $t0, $t0
-//    instruction_mem[3] = 8'b10000001; // addi $t0, $t0, 1
-//    instruction_mem[4] = 8'b01000110; // j L1(6)
-//    instruction_mem[5] = 8'b00110000; // L1: sw $t0, 0($t1)
-//    instruction_mem[6] = 8'b10110000; // sub $t1,$t1,$t0
+        instruction_mem[0] = 8'b10011001; // addi $t1, $t1, 1
+        instruction_mem[1] = 8'b01100000; // add $t0, $t0, $t0
+        instruction_mem[2] = 8'b10000011; // addi $t0, $t0, 3
+        instruction_mem[3] = 8'b01000100; // j L1
+        instruction_mem[4] = 8'b00110000; // L1: sw $t0, 0($t1)
+        instruction_mem[5] = 8'b10101000; // sub $t0,$t0,$t1
+        instruction_mem[6] = 8'b00010000; // display regs
+        instruction_mem[7] = 8'b00010000; // display regs
     
-    instruction_mem[0] <= 8'b00010000; // lw $t0, 0($t1)
-    instruction_mem[1] <= 8'b01100000; // add $t0, $t0, $t0
-    instruction_mem[2] <= 8'b10000010; // addi $t0, $t0, 2
-    instruction_mem[3] <= 8'b01000100; // j L1
-    instruction_mem[4] <= 8'b00110000; // L1: sw $t0, 0($t1)
-    instruction_mem[5] <= 8'b10100000; // sub $t1,$t1,$t0
+//    instruction_mem[0] = 8'b00010000; // lw $t0, 0($t1)
+//    instruction_mem[1] = 8'b01100000; // add $t0, $t0, $t0
+//    instruction_mem[2] = 8'b10000010; // addi $t0, $t0, 2
+//    instruction_mem[3] = 8'b01000100; // j L1
+//    instruction_mem[4] = 8'b00110000; // L1: sw $t0, 0($t1)
+//    instruction_mem[5] = 8'b10110000; // sub $t1,$t1,$t0
+//    instruction_mem[6] = 8'b00010000; // display regs
+//    instruction_mem[7] = 8'b00010000; // display regs
+
+//        instruction_mem[0] = 8'b01100000; // add $t0, $t0, $t0
+//        instruction_mem[1] = 8'b01101000; // add $t0, $t0, $t1
+//        instruction_mem[2] = 8'b10101000; // sub $t0,$t0,$t1
+
+//        instruction_mem[0] = 8'b10110000; // sub $t1,$t1,$t0
+//        instruction_mem[1] = 8'b10110000; // sub $t1,$t1,$t0
     end
     
     always @(address) // when address received

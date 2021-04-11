@@ -9,7 +9,7 @@ module Control_Unit(input [2:0] opcode,
         jump = 0;
     end
     
-    always @(*)
+    always @(opcode)
     
     begin
         case(opcode)

@@ -5,7 +5,7 @@ module MUX2to1(a, b, signal, f);
     input signal;
     output reg [7:0] f;
     
-    always @(signal)
+    always @(*)
         begin
             case(signal)
                 1'b0: f = a; //Bit 0 choose A

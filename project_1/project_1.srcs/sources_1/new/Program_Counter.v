@@ -26,36 +26,36 @@ module Program_Counter(
     output reg[7:0] new_address // outgoing address value, only changes after delay loop
     );
     
-    integer delay = 1; // counter to prevent over running instruction execution process
-    reg[7:0] position = 8'b0; // 
+    integer delay = 0; // counter to prevent over running instruction execution process
+    reg[7:0] position = 8'b11111111; // 
 
-    
+
     always @(posedge clock)
     begin
         
         if(jump_signal != 1) begin
-        
-        
-            if(delay == 0) begin // change address
-                position = position + 1;
-                new_address = position;                
-                delay = delay + 1; // increment counter
-            end
-            else begin // no address change
-                if(delay < 4) begin
-                    delay = delay + 1; // increment counter
-                    new_address = position; // address no change
-                end
-                else begin
-                    delay = 0; // reset counter
-                    new_address = position; // address no change
-                end
-            end
+            position = position + 1;
+            new_address = position;
+//            if(delay == 0) begin // change address
+//                position = position + 1;
+//                new_address = position;                
+//                delay = delay + 1; // increment counter
+//            end
+//            else begin // no address change
+//                if(delay < 1) begin
+//                    delay = delay + 1; // increment counter
+//                    new_address = position; // address no change
+//                end
+//                else begin
+//                    delay = 0; // reset counter
+//                    new_address = position; // address no change
+//                end
+//            end
         end
         else begin
             position = change_address;
             new_address = position;
-            delay = 1; // reset counter
+//            delay = 1; // reset counter
         end
     end
 endmodule 
