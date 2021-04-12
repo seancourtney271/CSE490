@@ -13,6 +13,8 @@ module Data_Mem(
         for(i = 0; i < 31; i = i + 1)begin
         stack[i] = 8'b0;
         end
+//        stack[0] = 8'b00001010;
+//        stack[3] = 8'b11101110;
     end
     
     always @(posedge clock)

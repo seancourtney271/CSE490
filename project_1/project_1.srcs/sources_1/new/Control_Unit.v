@@ -20,7 +20,7 @@ module Control_Unit(input [2:0] opcode,
             alu_op = opcode; 
             jump = 1'b0;
             mem_write = 1'b0;
-            alu_sig = 1'b0;
+            alu_sig = 1'b1;
             writeback_sig = 1'b0;
             reg_write = 1'b1;
         end

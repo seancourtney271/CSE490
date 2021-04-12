@@ -8,7 +8,7 @@ module Register_File(
     reg [7:0] t0, t1; // registers
     initial begin
         t0 = 8'b00;
-        t1 = 8'b00;
+        t1 = 8'b000;
     end 
     
     always @ (clock)
